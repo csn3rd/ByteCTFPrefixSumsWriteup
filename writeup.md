@@ -9,13 +9,17 @@ For convenience, here is a screenshot of the problem statement as well.
 ![](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/Problem_Statement.png)
 
 ## Problem Breakdown
-For this challenge, we are tasked to find some probability and then manipulate it to form the flag. Getting a bit ahead of ourselves, but it is important to note that *N* > 10<sup>18</sup> and *p* > 10<sup>14</sup>. Therefore, a solution that runs within a reasonable time must have a runtime of O(1), O(lg *p*), or O(lg *N*). Worst case if we can't find an efficient solution, we will have to find an O(*p*) solution which would run for over 36 hours but less 60 hours (may fall within the bounds of the contest, a 72 hour event).
-
 Our first step is to read the problem and fully understand the meaningful information.
 
 Let's break down the problem. The first sentence explains that we have some sequence of *N* elements consisting of 0's and 1's. Then, the definition of a prefix sum is defined where S<sub>k</sub> is the sum of the first *k* elements within the sequence. Since the sequence only contains 0's and 1's, S<sub>k</sub> is pretty much the number of 1's in the first *k* characters of the sequence. Next, we are told that there are *p* 0's within the sequence. The variables *N* and *p* are now defined within the context of this problem.
 
 Next, we are given the important property which helps us determine the probability. We are trying to test if the sequence passes the condition that "2S<sub>k</sub> - *k* > 0 ∀*k* between 1 and *N*" (Note ∀ means "for all"). Let's simplify this. We can move *k* and the coefficient factor of 2 to the other side to get the equivalent inequality of "S<sub>k</sub> > *k*/2". At the end, we are told that *p* < (*N*-*p*). This is necessary because if *p* >= (*N*-*p*), then when *k* = *N*, the condition is not satisfied and the total probability is 0.
+
+In the second section, we are told how to get the flag. We must simplify the fraction to its simplest terms. We take the numerator and denominator and append the two together as strings. Then, we convert this value to hex and put it into the flag format. We are given a hash to confirm our solution.
+
+**TL;DR: We are tasked to find the probability that a binary sequence of length *N* containing *p* 0's meets a given condition. We must find the simplest fractional representation of the probability and manipulate it to form the flag.**
+
+It is important to note that *N* > 10<sup>18</sup> and *p* > 10<sup>14</sup>. Therefore, a solution that runs within a reasonable time must have a runtime of O(1), O(lg *p*), or O(lg *N*). Worst case if we can't find an efficient solution, we will have to find an O(*p*) solution which would run for over 36 hours but less 60 hours (may fall within the bounds of the contest, a 72 hour event).
 
 ## Determining Relationships
 Now that we understand the problem, our next step is to start writing out some cases and recognizing any relationships or patterns between the variables and valid sequences.
