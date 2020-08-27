@@ -35,7 +35,7 @@ Let's highlight in yellow the cases which satisfy the condition "2S<sub>k</sub> 
 
 ![](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/Satsify%20Condition%20for%20Size%20k.png)
 
-Of course, the problem is asking for sequences which satisfy "2S<sub>k</sub> - *k* > 0" for all *k* values, not just when *k* = *N*. We have marked all the conditions which work when *k* = *N* so we can ignore the other cases. To confirm whether a sequence matches the full conditions without the restriction on *k*, we will check if all of its "prefixes" are marked as yellow from the previous step. We will highlight the sequence green if it satisfies the full condition and is a valid sequence.
+Of course, the problem is asking for sequences which satisfy "2S<sub>k</sub> - *k* > 0" for all *k* values, not just when *k* = *N*. We have marked all the conditions which work when *k* = *N* so we can ignore the other cases. To confirm whether a sequence matches the full conditions without the restriction on *k*, we will check if all of its "prefixes" are marked as yellow from the previous step. We will highlight the sequence green if it is a valid sequence for all *k*.
 
 ![](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/Brute_Force_Conditions_Analysis.png)
 
