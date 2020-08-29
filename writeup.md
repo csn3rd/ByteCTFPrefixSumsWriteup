@@ -62,7 +62,14 @@ In this function, the largest factorial is (size-1)! and the runtime to calculat
 
 Going back to the table, there does not seem to be any patterns for each individual column so we seem to have found the most efficient way to calculate the numerator of the probability. Of course, we still have to calculate the denominator of the probability and that may help us find a better solution or find some simplifications.
 
-### Relationship between *N*, *p*, and No. of Total Sequences
+### Relationship between *N*, *p*, and Total No. of Sequences
+The denominator of the probability is the total number of sequences given size *N* and *p* 0's. Let's go back to the first table with the exhaustive list of all binary sequences. We will go through each of the sequences and count up how many zeroes the string contains. This will help us create a table where the value at the *j*th column and *i*th row denotes the number of sequences of size *j* containing *i* 0's.
+
+Here is the table (highlighted in orange) containing the number of sequences for the first 12 possible sizes *N* and the first 6 possibilities of *p*. The table can be also be found in [this pdf](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/Brute_Force_Probabilities_Table.pdf) if the image is too small or unclear.
+
+![](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/Brute_Force_Probabilities_Table.png)
+
+Entering each row into OEIS, we discover that the number of sequences is binomial(*N*, *p*).
 
 
 **To be continued ...**
