@@ -69,7 +69,14 @@ Here is the table (highlighted in orange) containing the number of sequences for
 
 ![](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/Brute_Force_Probabilities_Table.png)
 
-Entering each row into OEIS, we discover that the number of sequences is binomial(*N*, *p*).
+Entering each row into OEIS, we discover that the function which describes each row is binomial(n, row). In this case n = size and row = *p*. Thus, the function which describes the total number of sequences is binomial(size, *p*).
 
+According to the binomial theorem, ![](https://calcworkshop.com/wp-content/uploads/binomial-coefficient-example.png), binomial(n, r) = n! / r!(n-r)!. 
+
+So, the denominator of the probability is size! / *p*!(size-*p*)!.
+
+### Combining and Simplifying the Probability
+
+In the numerator, we have (size-2*p*)(size-1)! / (size-*p*)!(*p*)!. In the denominator, we have size! / *p*!(size-*p*)!. 
 
 **To be continued ...**
