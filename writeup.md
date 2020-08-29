@@ -71,12 +71,109 @@ Here is the table (highlighted in orange) containing the number of sequences for
 
 Entering each row into OEIS, we discover that the function which describes each row is binomial(n, row). In this case n = size and row = *p*. Thus, the function which describes the total number of sequences is binomial(size, *p*).
 
-According to the binomial theorem, ![](https://calcworkshop.com/wp-content/uploads/binomial-coefficient-example.png), binomial(n, r) = n! / r!(n-r)!. 
+According to the binomial theorem, binomial(n, r) = n! / r!(n-r)!. 
 
-So, the denominator of the probability is size! / *p*!(size-*p*)!.
+So, the denominator of the probability is size! / (*p*)!(size-*p*)!.
 
 ### Combining and Simplifying the Probability
 
-In the numerator, we have (size-2*p*)(size-1)! / (size-*p*)!(*p*)!. In the denominator, we have size! / *p*!(size-*p*)!. 
+In the numerator, we have (size-2*p*)(size-1)! / (size-*p*)!(*p*)!. In the denominator, we have size! / (*p*)!(size-*p*)!. Dividing fractions is equivalent to multiplying the first fraction by the reciprocal of the second. So, the probability is (size-2*p*)(size-1)!(*p*)!(size-*p*)! / (size-*p*)!(*p*)!(size)!. We can see that (*p*)! and (size-*p*)! are found in both the numerator and the denominator and cancel out. We now have (size-2*p*)(size-1)! / (size)!. We know that (size)! is equivalent to size \* (size-1)! and so we can rewrite the probability as (size-2*p*)(size-1)! / (size)(size-1)!. The two (size-1)! terms cancel out and we are left with (size-2*p*) / (size).
 
-**To be continued ...**
+Taking a look at what we have, the probability which we are trying to find can be found in O(1) time! This is very fast and will clearly find our answer within seconds.
+
+### Writing Code to Get the Flag
+
+We now have an O(1) solution to getting the probability. Since the numbers are very large, we will use python for our solution. As denoted in the problem statement, we'll name the numerator *a* and the denominator *b*. Let's start writing our *get_flag()* function. We'll create a file called *prefix_sums.py*. 
+
+```
+def get_flag(n, p):
+	a = n-2*p
+	b = n
+```
+
+Next, the problem statment tells us that we need to simplify our fraction to the simplest terms, such that the GCD of *a* and *b* is 1.
+
+```
+from math import gcd
+
+def get_flag(n, p):
+	a = n-2*p
+	b = n
+
+	factor = gcd(a, b)
+
+	a = a//factor
+	b = b//factor
+
+	print("simplified fraction:\t\t" + str(a) + "/" + str(b))
+```
+
+We can use the gcd function in the math library to help us simplify our fraction by fiding the common divisor then dividing both *a* and *b* by that common divisor. We can print it out to confirm that the fraction looks correct.
+
+Next, we need to concatenate *a* and *b* together as strings. We need to convert that string to decimal and then convert it to hex. Last, we need to enclose the hex value by the flag format.
+
+```
+from math import gcd
+
+def get_flag(n, p):
+	a = n-2*p
+	b = n
+
+	factor = gcd(a, b)
+
+	a = a//factor
+	b = b//factor
+
+	print("simplified fraction:\t\t" + str(a) + "/" + str(b))
+
+	dec = int(str(a) + str(b))
+	flag = "flag{" + hex(dec) + "}"
+
+	print("flag:\t\t\t\t" + flag)
+```
+
+This is the code to form the flag string.
+
+In the problem statement, we were also given the md5 hash of the flag. We can use the md5 encoding function in the hashlib function to help us confirm that we have found the correct flag.
+
+```
+from math import gcd
+import hashlib
+
+def get_flag(n, p):
+	a = n-2*p
+	b = n
+
+	factor = gcd(a, b)
+
+	a = a//factor
+	b = b//factor
+
+	print("simplified fraction:\t\t" + str(a) + "/" + str(b))
+
+	dec = int(str(a) + str(b))
+	flag = "flag{" + hex(dec) + "}"
+
+	print("flag:\t\t\t\t" + flag)
+
+	hash = hashlib.md5(flag.encode()).hexdigest()
+
+	if hash == "6046f30cf9e942ed47c88621a69ed0b2":
+		print("flag is correct. hash:\t\t" + hash)
+	else:
+		print("flag is incorrect. hash:\t" + hash)
+```
+
+Our *get_flag()* function is now complete.
+
+We can set *N* and *p* to the values we are given and call the *get_flag* function() to get our final result. Append the following lines and our code is complete.
+
+```
+n = 3141592653589793238
+p = 101124131231734
+get_flag(n, p)
+```
+
+We can run our code by traversing to the directory of our code in terminal / command prompt. Type in the command `python3 prefix_sums.py` and we receive our flag.
+
+Flag: `flag{0xbd10c864dce5299aadd5b7aac2124eb}`
