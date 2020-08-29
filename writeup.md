@@ -174,6 +174,8 @@ p = 101124131231734
 get_flag(n, p)
 ```
 
+Here is the official [prefix_sums.py](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/prefix_sums.py) for easy view and download.
+
 We can run our code by traversing to the directory of our code in terminal / command prompt. Type in the command `python3 prefix_sums.py` and we receive our flag.
 
 Flag: `flag{0xbd10c864dce5299aadd5b7aac2124eb}`
