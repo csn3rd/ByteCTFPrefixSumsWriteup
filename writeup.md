@@ -81,7 +81,7 @@ In the numerator, we have (size-2*p*)(size-1)! / (size-*p*)!(*p*)!. In the denom
 
 Taking a look at what we have, the probability which we are trying to find can be found in O(1) time! This is very fast and will clearly find our answer within seconds.
 
-### Writing Code to Get the Flag
+## Writing Code to Get the Flag
 
 We now have an O(1) solution to getting the probability. Since the numbers are very large, we will use python for our solution. As denoted in the problem statement, we'll name the numerator *a* and the denominator *b*. Let's start writing our *get_flag()* function. We'll create a file called *prefix_sums.py*. 
 
@@ -178,4 +178,4 @@ Here is the official [prefix_sums.py](https://github.com/csn3rd/ByteCTFAlgoWrite
 
 We can run our code by traversing to the directory of our code in terminal / command prompt. Type in the command `python3 prefix_sums.py` and we receive our flag.
 
-Flag: `flag{0xbd10c864dce5299aadd5b7aac2124eb}`
+**Flag**: `flag{0xbd10c864dce5299aadd5b7aac2124eb}`
