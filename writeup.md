@@ -41,7 +41,7 @@ Of course, the problem is asking for sequences which satisfy "2S<sub>k</sub> - *
 
 ![](https://github.com/csn3rd/ByteCTFAlgoWriteup/blob/master/Brute_Force_Conditions_Analysis.png)
 
-Now, we can count up the number of valid sequences for each N up to *N* = 5 (7 in the pdf). We  have now created 2 sequences of numbers which we can look up on the On-Line Encyclopedia of Integer Sequences (OEIS) and help us extrapolate the values for future steps when needed. The sequence id's are attached to the end of their corresponding rows. The sequence which matters to us is the green one, id: A001405, as that describes the number of valid sequences for a given size. According to OEIS, the number of valid sequences for a size *N* can be defined by a function, f(*N*) = binomial(*N*, floor(*N*/2)).
+Now, we can count up the number of valid sequences for each *N* up to *N* = 5 (7 in the pdf). We have now created 2 sequences of numbers which we can look up on the On-Line Encyclopedia of Integer Sequences (OEIS) and help us extrapolate the values for future steps when needed. The sequence id's are attached to the end of their corresponding rows. The sequence which matters to us is the green one, id: A001405, as that describes the number of valid sequences for a given size. According to OEIS, the number of valid sequences for a size *N* can be defined by a function, f(*N*) = binomial(*N*, floor(*N*/2)).
 
 ### Relationship between *N*, *p*, and No. of Valid Sequences
 In the last step, we found the function which describes the number of valid sequences for any given size *N*. Let's break it down further and calculate the number of valid sequences for any given size *N* containing *p* zeroes (this is going to be the numerator of the probability).
